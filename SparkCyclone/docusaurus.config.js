@@ -51,7 +51,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'index',
             position: 'left',
             label: 'Docs',
           },
@@ -71,15 +71,15 @@ const config = {
             items: [
               {
                 label: 'Getting Started',
-                to: '/docs/02 Getting Started',
+                to: '/docs/getting-started/vector-engine-setup',
               },
               {
                  label: 'Configuration',
-                 to: '/docs/04 Configuration',
+                 to: '/docs/configuration/spark-cyclone-configuration',
               },
               {
                  label: 'Examples',
-                 to: '/docs/10 Examples',
+                 to: '/docs/examples/running-tpch-benchmarks',
               },
             ],
           },
@@ -105,7 +105,7 @@ const config = {
             items: [
               {
                 label: 'Blog',
-                to: 'https://blog.xpress.ai',
+                href: 'https://blog.xpress.ai',
               },
               {
                 label: 'GitHub',
