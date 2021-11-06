@@ -3,7 +3,7 @@ sidebar_position: 1
 ---
 # Downloads
 
-[Spark Cyclone](https://github.com/XpressAI/Spark Cyclone) provides a set of plugins for Apache Spark that leverage VEs to accelerate Dataframe and SQL processing.
+[Spark Cyclone](https://github.com/XpressAI/SparkCyclone) provides a set of plugins for Apache Spark that leverage VEs to accelerate Dataframe and SQL processing.
 
 See the getting-started guide for more details.
 
