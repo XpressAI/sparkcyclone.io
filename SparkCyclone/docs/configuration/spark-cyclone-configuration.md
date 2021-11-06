@@ -11,11 +11,9 @@ $SPARK_HOME/bin/spark-submit \
 	--master yarn \
 	--num-executors=8 --executor-cores=1 --executor-memory=7G \
 	--name job \
-	--conf spark.com.nec.spark.ncc.path=/opt/nec/ve/bin/ncc \
-	--jars /opt/Spark Cyclone/Spark Cyclone-sql-plugin.jar \
-	--conf spark.executor.extraClassPath=/opt/Spark Cyclone/Spark Cyclone-sql-plugin.jar \
+	--jars /opt/cyclone/spark-cyclone-sql-plugin.jar \
+	--conf spark.executor.extraClassPath=/opt/cyclone/spark-cyclone-sql-plugin.jar \
 	--conf spark.plugins=com.nec.spark.AuroraSqlPlugin \
-	--conf spark.driver.resource.ve.discoveryScript=/opt/spark/getVEsResources.sh \
 	--conf spark.executor.resource.ve.amount=1 \
 	--conf spark.executor.resource.ve.discoveryScript=/opt/spark/getVEsResources.sh \
 	job.py
@@ -46,4 +44,5 @@ $SPARK_HOME/bin/spark-submit \
 | spark.com.nec.spark.batch-batches                    | This is to batch ColumnarBatch together, to allow for larger input sizes into the VE. This may however use more on-heap and off-heap memory. | 0                         |
 | com.nec.spark.preshuffle-partitions                  | Avoids a coalesce into a single partition, trading it off for pre-sorting/pre-partitioning data by hashes of the group-by expressions | -                         |
 
-For `spark.com.nec.spark.ncc.extra-argument.[0-?]`. Please refer https://www.hpc.nec/documents/sdk/pdfs/g2af01e-C++UsersGuide-023.pdf
+For `spark.com.nec.spark.ncc.extra-argument.[0-?]`. Please refer to 
+[the NEC C++ compiler guide](https://www.hpc.nec/documents/sdk/pdfs/g2af01e-C++UsersGuide-023.pdf)

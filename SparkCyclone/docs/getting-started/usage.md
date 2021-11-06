@@ -6,19 +6,17 @@ sidebar_position: 4
 
 ## Launching a Vector Engine Spark Shell
 
+The minimum configuration required to start a Spark Shell is:
+
 ```bash
  $SPARK_HOME/bin/spark-shell --master yarn \
         --num-executors=8 --executor-cores=1 --executor-memory=4G \
-        --conf spark.com.nec.spark.ncc.path=/opt/nec/ve/bin/ncc \
-        --jars /opt/Spark Cyclone/Spark Cyclone-sql-plugin.jar \
+        --jars /opt/cyclone/spark-cyclone-sql-plugin.jar \
+        --conf spark.executor.extraClassPath=/opt/cyclone/spark-cyclone-sql-plugin.jar \
         --conf spark.plugins=com.nec.spark.AuroraSqlPlugin \
-        --conf spark.sql.columnVector.offheap.enabled=true \
-        --conf spark.com.nec.native-csv=VE \
         --conf spark.executorEnv.VE_OMP_NUM_THREADS=1 \
-	--files $SPARK_HOME/getVEsResources.sh 
-```
 
-To launch Vector Engine Spark Shell we need to specify `--jars /opt/Spark Cyclone/Spark Cyclone-sql-plugin.jar` and `--conf spark.plugins=com.nec.spark.AuroraSqlPlugin`. `--conf spark.com.nec.spark.ncc.path=/opt/nec/ve/bin/ncc` is currently needed, but we will fix this in future.
+```
 
 ## Running a Pyspark job in Vector Engine
 
@@ -75,13 +73,9 @@ $SPARK_HOME/bin/spark-submit \
     --master yarn \
     --num-executors=8 --executor-cores=1 --executor-memory=7G \
     --name compat.py_VE \
-    --conf spark.com.nec.spark.ncc.path=/opt/nec/ve/bin/ncc \
-    --jars /opt/Spark Cyclone/Spark Cyclone-sql-plugin.jar \
-    --conf spark.executor.extraClassPath=/opt/Spark Cyclone/Spark Cyclone-sql-plugin.jar \
+    --jars /opt/cyclone/spark-cyclone-sql-plugin.jar \
+    --conf spark.executor.extraClassPath=/opt/cyclone/spark-cyclone-sql-plugin.jar \
     --conf spark.plugins=com.nec.spark.AuroraSqlPlugin \
-    --conf spark.sql.columnVector.offheap.enabled=true \
-    --conf spark.driver.resource.ve.amount=1 \
-    --conf spark.driver.resource.ve.discoveryScript=/opt/spark/getVEsResources.sh \
     --conf spark.executor.resource.ve.amount=1 \
     --conf spark.executor.resource.ve.discoveryScript=/opt/spark/getVEsResources.sh \
     compat.py
