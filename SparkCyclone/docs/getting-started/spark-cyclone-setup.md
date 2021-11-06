@@ -61,8 +61,22 @@ Ensure that you have both java and javac installed. You also need sbt and java-d
 
 ## 3. Clone Spark Cyclone repo and build
 
-	$ git clone https://github.com/XpressAI/Spark Cyclone
-	$ cd Spark Cyclone
-	$ sbt deploy local
+	$ git clone https://github.com/XpressAI/SparkCyclone
+	$ cd SparkCyclone
+	$ sbt assembly
 
-Now that Spark Cyclone has been setup, Examples: Try out the Runnning TPCH Benchmarks in the Examples Section.
+The `sbt assembly` command will compile the spark-cyclone-sql-plugin.jar file at:
+    target/scala-2.12/spark-cyclone-sql-plugin-assembly-0.1.0-SNAPSHOT.jar
+
+## 4. Installing into to cluster machines
+
+The `deploy local` command will compile and copy the spark-cyclone-sql-plugin.jar into /opt/cyclone.  If you have a 
+cluster of machines you can copy the jar file to them by running the deploy command with the hostname.
+
+```bash
+
+for ssh_host in `cat hadoop_hosts`
+do
+  sbt "deploy $ssh_host"
+done
+```
