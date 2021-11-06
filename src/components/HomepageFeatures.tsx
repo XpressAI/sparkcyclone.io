@@ -32,7 +32,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         The SX-Aurora TSUBASA Vector Engine is natively 64-bit, so you
-          don&apros;t have to change your longs to ints, or doubles to
+          don&apos;t have to change your longs to ints, or doubles to
           float to take advantage of the extra performance.
       </>
     ),
