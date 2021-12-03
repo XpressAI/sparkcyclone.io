@@ -17,7 +17,7 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: 'Easy to Configure',
-    image: '/img/undraw_docusaurus_mountain.svg',
+    image: '/img/configure.png',
     description: (
       <>
         Spark Cyclone is designed as a standard plug-in for Apache Spark.
@@ -28,7 +28,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Compatible',
-    image: '/img/undraw_docusaurus_tree.svg',
+    image: '/img/compatible.png',
     description: (
       <>
         The SX-Aurora TSUBASA Vector Engine is natively 64-bit, so you
@@ -39,7 +39,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Powered by Frovedis',
-    image: '/img/undraw_docusaurus_react.svg',
+    image: '/img/engine.png',
     description: (
       <>
         <a href='http://github.com/frovedis/frovedis'>Frovedis</a> provides the foundation
