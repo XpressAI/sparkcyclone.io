@@ -56,6 +56,8 @@ As seen from the ```Cluster Nodes``` tab, the Memory Total, VCores Total, as wel
 
 Ensure that you have both java and javac installed. You also need sbt and java-devel.
 
+        $ curl -L https://www.scala-sbt.org/sbt-rpm.repo > sbt-rpm.repo
+        $ mv sbt-rpm.repo /etc/yum.repos.d/
 	$ yum install sbt
 	$ yum install java-devel
 
