@@ -49,7 +49,7 @@ In this guide We have used the Spark distribution without hadoop, however you sh
 	#!/usr/bin/sh
 
 	 
-	JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-1.el7_9.x86_64/
+	JAVA_HOME=usr/lib/jvm/java-1.8.0
 	export JAVA_HOME
 
 	HADOOP_HOME=/opt/hadoop
