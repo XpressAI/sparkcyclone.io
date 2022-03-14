@@ -19,28 +19,28 @@ $ /opt/spark/bin/spark-submit \
     --name PairwiseAddExample \
     --master yarn \
     --deploy-mode cluster \
-    --jars /opt/cyclone/spark-cyclone-sql-plugin.jar \
+    --jars /opt/cyclone/${USER}/spark-cyclone-sql-plugin.jar \
     /opt/cyclone/examples/example-add-pairwise.py
 
 $ /opt/spark/bin/spark-submit \
     --name AveragingExample \
     --master yarn \
     --deploy-mode cluster \
-    --jars /opt/cyclone/spark-cyclone-sql-plugin.jar \
+    --jars /opt/cyclone/${USER}/spark-cyclone-sql-plugin.jar \
     /opt/cyclone/examples/example-avg.py
 
 $ /opt/spark/bin/spark-submit \
     --name SumExample \
     --master yarn \
     --deploy-mode cluster \
-    --jars /opt/cyclone/spark-cyclone-sql-plugin.jar \
+    --jars /opt/cyclone/${USER}/spark-cyclone-sql-plugin.jar \
     /opt/cyclone/examples/example-sum.py
 
 $ /opt/spark/bin/spark-submit \
     --name SumMultipleColumnsExample \
     --master yarn \
     --deploy-mode cluster \
-    --jars /opt/cyclone/spark-cyclone-sql-plugin.jar \
+    --jars /opt/cyclone/${USER}/spark-cyclone-sql-plugin.jar \
     /opt/cyclone/examples/example-sum-multiple.py
 
 
@@ -48,14 +48,14 @@ $ /opt/spark/bin/spark-submit \
     --name AveragingMultipleColumns5Example \
     --master yarn \
     --deploy-mode cluster \
-    --jars /opt/cyclone/spark-cyclone-sql-plugin.jar \
+    --jars /opt/cyclone/${USER}/spark-cyclone-sql-plugin.jar \
     /opt/cyclone/examples/example-avg-multiple.py
 
 $ /opt/spark/bin/spark-submit \
     --name MultipleOperationsExample \
     --master yarn \
     --deploy-mode cluster \
-    --jars /opt/cyclone/spark-cyclone-sql-plugin.jar \
+    --jars /opt/cyclone/${USER}/spark-cyclone-sql-plugin.jar \
     /opt/cyclone/examples/example-multiple-operations.py
 
 ```

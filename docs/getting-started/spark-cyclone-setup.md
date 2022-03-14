@@ -52,16 +52,39 @@ As seen from the ```Cluster Nodes``` tab, the Memory Total, VCores Total, as wel
 ![image](https://user-images.githubusercontent.com/68586800/137414646-4ce66a4e-2f4f-4817-a5a1-686ab349a2a3.png)
 
 
-## 3. Build Tools
+## 3. Installation
 
-Ensure that you have both java and javac installed. You also need sbt and java-devel.
+Spark Cyclone was designed to be easily swappable for normal Spark. You would need to download the latest jar release from https://github.com/XpressAI/SparkCyclone/releases, then drop it to `/opt/cyclone/${USER}/`.
+To use it, simply add spark-cyclone-sql-plugin.jar to your jar can executor config: 
+```
+$SPARK_HOME/bin/spark-submit \
+    --master yarn \
+    --num-executors=8 --executor-cores=1 --executor-memory=7G \
+    --name job \
+    --jars /opt/cyclone/${USER}/spark-cyclone-sql-plugin.jar \
+    --conf spark.executor.extraClassPath=/opt/cyclone/${USER}/spark-cyclone-sql-plugin.jar \
+    --conf spark.plugins=com.nec.spark.AuroraSqlPlugin \
+    --conf spark.executor.resource.ve.amount=1 \
+    --conf spark.executor.resource.ve.discoveryScript=/opt/spark/getVEsResources.sh \
+    job.py
+```
+Please refer to the [configuration](https://www.sparkcyclone.io/docs/configuration/spark-cyclone-configuration) page for more details.
+
+
+## 4. Building
+Follow the steps if you would like to build Spark Cyclone.
+### Build Tools
+
+Ensure that you have both java and javac installed. You also need sbt, java-devel, as well as devtoolset-11.
 
 	$ curl -L https://www.scala-sbt.org/sbt-rpm.repo > sbt-rpm.repo
 	$ mv sbt-rpm.repo /etc/yum.repos.d/
 	$ yum install sbt
 	$ yum install java-devel
+    $ yum install centos-release-scl-rh
+    $ yum install devtoolset-11-toolchain
 
-## 3. Clone Spark Cyclone repo and build
+### Clone Spark Cyclone repo and build
 
 	$ git clone https://github.com/XpressAI/SparkCyclone
 	$ cd SparkCyclone
@@ -70,7 +93,7 @@ Ensure that you have both java and javac installed. You also need sbt and java-d
 The `sbt assembly` command will compile the spark-cyclone-sql-plugin.jar file at:
     target/scala-2.12/spark-cyclone-sql-plugin-assembly-0.1.0-SNAPSHOT.jar
 
-## 4. Installing into to cluster machines
+## 5. Installing into to cluster machines
 
 The `deploy local` command will compile and copy the spark-cyclone-sql-plugin.jar into /opt/cyclone.  If you have a 
 cluster of machines you can copy the jar file to them by running the deploy command with the hostname.
