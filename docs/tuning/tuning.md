@@ -3,7 +3,7 @@ sidebar_position: 1
 ---
 # Tuning Spark Cyclone
 
-Tuning a spark job will improve performace in most cases. Having said that, finding the good configuration is always a difficult task.
+Tuning a spark job will improve performance in most cases. Having said that, finding the good configuration is always a difficult task.
 
 ## Number of Executors
 
