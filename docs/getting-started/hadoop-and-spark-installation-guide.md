@@ -81,9 +81,9 @@ If you are using Spark without Hadoop bundled, consider adding
 
 Ensure that they are extracted such that the path is ```/opt/hadoop/etc``` instead of ```/opt/hadoop/hadoop3.3/etc```
 
-9\. Add getVEsResources.sh
+9\. Add getVEsResources.py
 
-# vi /opt/spark/getVEsResources.sh
+# vi /opt/spark/getVEsResources.py
 
 	#!/usr/bin/env bash
 
@@ -103,9 +103,9 @@ Ensure that they are extracted such that the path is ```/opt/hadoop/etc``` inste
 		--conf spark.driver.resource.ve.amount=1 \
 		--conf spark.executor.resource.ve.amount=1 \
 		--conf spark.task.resource.ve.amount=1 \
-		--conf spark.driver.resource.ve.discoveryScript=$SPARK_HOME/getVEsResources.sh \
-		--conf spark.executor.resource.ve.discoveryScript=$SPARK_HOME/getVEsResources.sh \
-		--files $SPARK_HOME/getVEsResources.sh
+		--conf spark.driver.resource.ve.discoveryScript=$SPARK_HOME/getVEsResources.py \
+		--conf spark.executor.resource.ve.discoveryScript=$SPARK_HOME/getVEsResources.py \
+		--files $SPARK_HOME/getVEsResources.py
 
 11\. Change ownership of /opt/hadoop /opt/spark to hadoop user.
 

@@ -11,8 +11,8 @@ The minimum configuration required to start a Spark Shell is:
 ```bash
  $SPARK_HOME/bin/spark-shell --master yarn \
         --num-executors=8 --executor-cores=1 --executor-memory=4G \
-        --jars /opt/cyclone/spark-cyclone-sql-plugin.jar \
-        --conf spark.executor.extraClassPath=/opt/cyclone/spark-cyclone-sql-plugin.jar \
+        --jars /opt/cyclone/${USER}/spark-cyclone-sql-plugin.jar \
+        --conf spark.executor.extraClassPath=/opt/cyclone/${USER}/spark-cyclone-sql-plugin.jar \
         --conf spark.plugins=com.nec.spark.AuroraSqlPlugin \
         --conf spark.executorEnv.VE_OMP_NUM_THREADS=1 \
 
@@ -73,10 +73,10 @@ $SPARK_HOME/bin/spark-submit \
     --master yarn \
     --num-executors=8 --executor-cores=1 --executor-memory=7G \
     --name compat.py_VE \
-    --jars /opt/cyclone/spark-cyclone-sql-plugin.jar \
-    --conf spark.executor.extraClassPath=/opt/cyclone/spark-cyclone-sql-plugin.jar \
+    --jars /opt/cyclone/${USER}/spark-cyclone-sql-plugin.jar \
+    --conf spark.executor.extraClassPath=/opt/cyclone/${USER}/spark-cyclone-sql-plugin.jar \
     --conf spark.plugins=com.nec.spark.AuroraSqlPlugin \
     --conf spark.executor.resource.ve.amount=1 \
-    --conf spark.executor.resource.ve.discoveryScript=/opt/spark/getVEsResources.sh \
+    --conf spark.executor.resource.ve.discoveryScript=/opt/spark/getVEsResources.py \
     compat.py
 ```

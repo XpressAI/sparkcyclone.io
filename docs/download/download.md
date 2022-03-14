@@ -7,7 +7,7 @@ sidebar_position: 1
 
 See the getting-started guide for more details.
 
-## Release v1.0.0
+## Release v1.0.1
 
 ### Hardware Requirements:
 

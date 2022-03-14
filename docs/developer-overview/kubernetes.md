@@ -5,7 +5,7 @@ sidebar_position: 3
 
 Kubernetes, also known as k8s, is an open-source container orchestration software. It is an application used to automate container applications deployment, scaling, network and management.
 
-Containers are a form of packaged software that consist of the application, related library and binaries, as well as other dependencies needed for the application to run. Containers provide a means of ‘virtualisation’ but unlike typical virtualization technology, containers do not need their own operating system to run and thus, it is very lightweight and convenient.
+Containers are a form of packaged software that consist of the application, related library and binaries, as well as other dependencies needed for the application to run. Containers provide a means of ‘virtualization’ but unlike typical virtualization technology, containers do not need their own operating system to run and thus, it is very lightweight and convenient.
 
 Containers alone in production are very limited in their capability. They are static in nature and they can be difficult to manage when deployed in numbers. That is where Kubernetes comes in by playing the role in controlling and managing containers. Kubernetes provides features such as automated development of containers and self-healing to ensure that there is no downtime in production.
 
@@ -72,7 +72,7 @@ Example usage is:
 ![image10](https://user-images.githubusercontent.com/68586800/133756226-2b8c3be4-58e5-41db-aa2c-51aa30ac7a89.png)
 
 
-Spark leverages against all the benefits that containerization introduces and It can also be customised to match any specific individual application’s needs. Amongst many benefits, It enables effective dependency management and separation. Packaging all dependencies along with Spark applications in containers avoids dependency issues that are common with Spark.
+Spark leverages against all the benefits that containerization introduces and It can also be customized to match any specific individual application’s needs. Amongst many benefits, It enables effective dependency management and separation. Packaging all dependencies along with Spark applications in containers avoids dependency issues that are common with Spark.
 
 Spark application dependencies can be pre-mounted into custom-built Docker images. Those dependencies can be added to the classpath by referencing them with local:// URIs and/or setting the SPARK_EXTRA_CLASSPATH environment variable in your Dockerfiles. The local:// scheme is also required when referring to dependencies in custom-built Docker images in spark-submit. Spark supports dependencies from the submission client’s local file system using the file:// scheme or without a scheme by using a full path instead, where the destination should be a Hadoop compatible filesystem. A typical example of this using S3 is via passing the following options:
 
@@ -91,7 +91,7 @@ Spark automatically handles Spark configs spark.{.driver/executor}.resource.
 {resourceType} into the kubernetes configs. It does so as long as the Kubernetes resource type follows the Kubernetes device plugin format of vendor-domain/resourcetype. Spark users can specify the vendor using the config spark.{driver/executor}.resource.
 {resourceType}. Using Kubernetes provides simplicity for resource allocation as the user does not need to configure anything else if you are using the Kubernetes Pod templates. You can schedule for example a GPU configuring the resources property in the Pod YAML file.
 
-The availability of the device plugin framework that Kubernetes provides allows for advertising system hardwares to the application running on containers. It lets Pod to access and consume specialised hardware such as GPU or VE. The plugin is used by the respective hardware vendor to install and expose the hardware device. The user can consume these devices from the container by specifying the vendor domain and the resource type in the form of vendor_domain/device_name. This is done by specifying the limits of the resources. The example is as follows:
+The availability of the device plugin framework that Kubernetes provides allows for advertising system hardwares to the application running on containers. It lets Pod to access and consume specialized hardware such as GPU or VE. The plugin is used by the respective hardware vendor to install and expose the hardware device. The user can consume these devices from the container by specifying the vendor domain and the resource type in the form of vendor_domain/device_name. This is done by specifying the limits of the resources. The example is as follows:
 
 ![image29](https://user-images.githubusercontent.com/68586800/133756503-96fa067c-42b9-4f18-9e35-dc07093effd8.png)
 
@@ -140,7 +140,7 @@ Kubernetes currently does not support the discovery of hardware vendor devices s
 
 - Health Check of these devices
 
-With this device plugin, Kubernetes is able to acknowledge vendor specific devices and utilise them for any jobs.
+With this device plugin, Kubernetes is able to acknowledge vendor specific devices and utilize them for any jobs.
 
 ## Device Plugin
 

@@ -16,7 +16,7 @@ Inside the src folder we have both the Scala source code and the C++ source code
 The C++ source files are used in some of the simple plans but in general mostly serve as examples as the plugin generates C++ code on the fly for most queries.
 
 In the Scala code you will see folders for:
-* "arrow" Contains the low level interface for transfering data and executing functions on the VE.
+* "arrow" Contains the low level interface for transferring data and executing functions on the VE.
 * "cmake" Contains logic for running queries on CPU which is used to ease development.
 * "native" contains the code for running the NCC compiler to generate the VE and/or CPU code.
 * "spark" contains the implementation of the plugin.  Of which the CEvaluationPlan and CExpressionEvaluation classes are the most important as they contain the C++ code generation logic.
