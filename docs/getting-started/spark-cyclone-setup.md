@@ -124,7 +124,6 @@ Follow the steps if you would like to build Spark Cyclone.
 Ensure that you have both java and javac installed. You also need sbt, java-devel, as well as devtoolset-11.
 
 	$ yum install centos-release-scl-rh    	
-	$ scl enable devtoolset-11 bash
 	$ yum install devtoolset-11-toolchain
 	
 	$ curl -L https://www.scala-sbt.org/sbt-rpm.repo > sbt-rpm.repo
@@ -135,6 +134,7 @@ Ensure that you have both java and javac installed. You also need sbt, java-deve
 
 ### Clone Spark Cyclone repo and build
 
+	$ scl enable devtoolset-11 bash
 	$ git clone https://github.com/XpressAI/SparkCyclone
 	$ cd SparkCyclone
 	$ sbt assembly
