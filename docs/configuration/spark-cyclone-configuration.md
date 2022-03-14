@@ -40,7 +40,7 @@ $SPARK_HOME/bin/spark-submit \
 | spark.resources.discoveryPlugin                      | Detecting resources automatically. Set it to `com.nec.ve.DiscoverVectorEnginesPlugin` to enable it | -                         |
 | spark.[executor\|driver].resource.ve.discoveryScript | Specifying resources via file. Set it to `/opt/spark/getVEsResources.py` to enable it or where ever your script is located | -                         |
 | spark.com.nec.spark.kernel.precompiled               | Use a precompiled directory                                  | -                         |
-| spark.com.nec.spark.kernel.directory                 | If precompiled directory is not yet exist, then you can also specify a destination for on-demand compilation. If this is not specified, then a random temporary directory will be used (not removed, however). | random temporay directory |
+| spark.com.nec.spark.kernel.directory                 | If precompiled directory is not yet exist, then you can also specify a destination for on-demand compilation. If this is not specified, then a random temporary directory will be used (not removed, however). | random temporary directory |
 | spark.com.nec.spark.batch-batches                    | This is to batch ColumnarBatch together, to allow for larger input sizes into the VE. This may however use more on-heap and off-heap memory. | 0                         |
 | com.nec.spark.preshuffle-partitions                  | Avoids a coalesce into a single partition, trading it off for pre-sorting/pre-partitioning data by hashes of the group-by expressions | -                         |
 
