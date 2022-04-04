@@ -169,8 +169,8 @@ into an `Expr`.  Due to limitations of the compiler, it is not possible for
 VeRDD to override the definitions of many operations such as`map` or `groupBy`
 Therefore to run the macro properly the compiler must know it is working with
 a VeRDD[T] instance.  Scala's type inference is usually sufficient so it is
-not necessary in general to specify the type `VeRDD[T]` explicitly.  For 
-example, if you have a function like:
+not necessary in general to specify the type `VeRDD[T]` explicitly.  Unless, for 
+example, you have a function like:
 
 ```scala
 def foo(rdd: RDD[(Long, Long)]): RDD[(Long, Double)] = {
@@ -179,12 +179,12 @@ def foo(rdd: RDD[(Long, Long)]): RDD[(Long, Double)] = {
 }
 ```
 
-If you pass a VeRDD into this function (which will work as `VeRDD[T]` 
-implements `RDD[T]`) it will run the `filter` and `map` methods that
-are defined on RDD and not the ones defined on VeRDD.  In this case
-since and `RDD` API is being called, the VeRDD will copy the data out of the VE
-and continue as a normal RDD.  To run this on the VE it is necessary to 
-overload or redefine this function as taking and returning a `VeRDD`.
+In this case even if you pass a VeRDD into this function (which will work as
+`VeRDD[T]` does implements `RDD[T]`) it will run the `filter` and `map` methods
+that are defined on RDD and not the ones defined in VeRDD.  In this case since
+and `RDD` API is being called, the `VeRDD` passed in will copy the data out of
+the VE and continue as a normal RDD.  To run this on the VE it is necessary to 
+overload or redefine this function as taking and returning a `VeRDD` like so.
 
 ```scala
 def foo(rdd: VeRDD[(Long, Long)]): VeRDD[(Long, Double)] = {
