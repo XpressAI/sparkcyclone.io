@@ -169,7 +169,29 @@ into an `Expr`.  Due to limitations of the compiler, it is not possible for
 VeRDD to override the definitions of many operations such as`map` or `groupBy`
 Therefore to run the macro properly the compiler must know it is working with
 a VeRDD[T] instance.  Scala's type inference is usually sufficient so it is
-not necessary in general to specify the type `VeRDD[T]` explicitly.
+not necessary in general to specify the type `VeRDD[T]` explicitly.  For 
+example, if you have a function like:
+
+```scala
+def foo(rdd: RDD[(Long, Long)]): RDD[(Long, Double)] = {
+  val filtered = rdd.filter((t: (Long, Long)) => t._1 < 10)
+  rdd.map((t: (Long, Long)) => (t._1, t._2 / 100.0))
+}
+```
+
+If you pass a VeRDD into this function (which will work as `VeRDD[T]` 
+implements `RDD[T]`) it will run the `filter` and `map` methods that
+are defined on RDD and not the ones defined on VeRDD.  In this case
+since and `RDD` API is being called, the VeRDD will copy the data out of the VE
+and continue as a normal RDD.  To run this on the VE it is necessary to 
+overload or redefine this function as taking and returning a `VeRDD`.
+
+```scala
+def foo(rdd: VeRDD[(Long, Long)]): VeRDD[(Long, Double)] = {
+  val filtered = rdd.filter((t: (Long, Long)) => t._1 < 10)
+  rdd.map((t: (Long, Long)) => (t._1, t._2 / 100.0))
+}
+```
 
 2) Lambdas should have types for their parameters  
 
