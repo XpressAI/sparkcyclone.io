@@ -85,12 +85,42 @@ Ensure that they are extracted such that the path is ```/opt/hadoop/etc``` inste
 
 # vi /opt/spark/getVEsResources.py
 
-	#!/usr/bin/env bash
+	#!/usr/bin/env python2
 
-	ve_addrs=`ls /dev/veslot[0-9] | sed 's/\/dev\/veslot\([0-9]\)/\1/'`
-	addr_list=`echo $ve_addrs | sed 's/\([0-9]\)/"\1"/g' | tr ' ' ,`
+	import subprocess
 
-	echo {\"name\": \"ve\", \"addresses\":[$addr_list]}
+	lines = subprocess.check_output(['/opt/nec/ve/bin/ps', 'ax']).split('\n')
+	ves = []
+	current_ve = None
+	for line in lines:
+	    if line.startswith("VE Node:"):
+		ve_id = int(line.split(': ')[1])
+		current_ve = {
+		    'id': ve_id,
+		    'procs': []
+		}
+		ves.append(current_ve)
+	    elif line.strip().startswith("PID TTY"):
+		pass
+	    elif len(line.strip()) == 0:
+		pass
+	    else:
+		parts = line.split()
+		proc = {
+		    'pid': parts[0],
+		    'tty': parts[1],
+		    'state': parts[2],
+		    'time': parts[3],
+		    'command': parts[4]
+		}
+		current_ve['procs'].append(proc)
+
+	ves.sort(key=lambda x: len(x['procs']) < 8)
+
+	ids = ",".join(['"' + str(x['id']) + '"' for x in ves])
+	print('{"name": "ve", "addresses": [' + ids + ']}')
+
+
   
 
 10\. Add ve-spark-shell.sh
