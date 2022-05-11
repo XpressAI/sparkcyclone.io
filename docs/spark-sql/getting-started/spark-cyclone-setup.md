@@ -113,7 +113,7 @@ $SPARK_HOME/bin/spark-submit \
     --conf spark.executor.resource.ve.discoveryScript=/opt/spark/getVEsResources.py \
     job.py
 ```
-Please refer to the [configuration](https://www.sparkcyclone.io/docs/configuration/spark-cyclone-configuration) page for more details.
+Please refer to the [configuration](https://www.sparkcyclone.io/docs/spark-sql/configuration/spark-cyclone-configuration) page for more details.
 
 
 ## 5. Building

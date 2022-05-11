@@ -71,15 +71,15 @@ const config = {
             items: [
               {
                 label: 'Getting Started',
-                to: '/docs/getting-started/vector-engine-setup',
+                to: '/docs/spark-sql/getting-started/vector-engine-setup',
               },
               {
                  label: 'Configuration',
-                 to: '/docs/configuration/spark-cyclone-configuration',
+                 to: '/docs/spark-sql/configuration/spark-cyclone-configuration',
               },
               {
                  label: 'Examples',
-                 to: '/docs/examples/running-tpch-benchmarks',
+                 to: '/docs/spark-sql/examples/running-tpch-benchmarks',
               },
             ],
           },
