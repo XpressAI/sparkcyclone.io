@@ -1,4 +1,5 @@
 {
   "label": "Spark SQL",
-  "position": 1
+  "position": 1,
+  "collapsed": false
 }
