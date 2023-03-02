@@ -3,7 +3,7 @@ sidebar_position: 2
 ---
 # Hadoop and Spark Installation Guide
 
-1\. Download hadoop 3.3.0 and Spark 3.1.0.
+### 1. Download hadoop 3.3.0 and Spark 3.1.0.
 
 In this guide We have used the Spark distribution without hadoop, however you should be able to use the one bundled with Hadoop.
 
@@ -11,16 +11,16 @@ In this guide We have used the Spark distribution without hadoop, however you sh
 	# wget https://archive.apache.org/dist/spark/spark-3.1.1/spark-3.1.1-bin-without-hadoop.tgz
 
 
-2\. Create the hadoop user
+### 2. Create the hadoop user
 
 	# useradd hadoop
 
-3\. Set hadoop user to be able to ssh to localhost without password
+### 3. Set hadoop user to be able to ssh to localhost without password
 
 	# su hadoop
 	$ ssh-keygen
 	
-**4\. < press enter to accept all defaults>**
+### 4. < press enter to accept all defaults>
 
 	$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 	$ chmod 600 ~/.ssh/authorized_keys
@@ -35,14 +35,14 @@ In this guide We have used the Spark distribution without hadoop, however you sh
 	$ exit
 	#
 	
-### Installing Hadoop
+## Installing Hadoop
 
-  **5\. Ensure Java is installed**
+### 5\. Ensure Java is installed**
 	
 	# java -version
 	openjdk version "1.8.0_282"
 
-6\. Create profile.d script to set hadoop variables for all users. Ensure that the JAVA_HOME points to your distribution of JDK. 
+### 6. Create profile.d script to set hadoop variables for all users. Ensure that the JAVA_HOME points to your distribution of JDK. 
 
 	# vi /etc/profile.d/hadoop.sh
   
@@ -73,18 +73,18 @@ If you are using Spark without Hadoop bundled, consider adding
 
 	export SPARK_DIST_CLASSPATH=$(/opt/hadoop/bin/hadoop classpath)
 
-7\. **Login again and verify variables set.**
+### 7. Login again and verify variables set
 
-	  # echo $HADOOP_HOME
+	# echo $HADOOP_HOME
 
-8\. **Extract hadoop and spark downloads into /opt/hadoop and /opt/spark**
+### 8. Extract hadoop and spark downloads into /opt/hadoop and /opt/spark
 
 Ensure that they are extracted such that the path is ```/opt/hadoop/etc``` instead of ```/opt/hadoop/hadoop3.3/etc```
 
-9\. Add getVEsResources.py
+### 9. Add getVEsResources.py
 
-# vi /opt/spark/getVEsResources.py
-
+	# vi /opt/spark/getVEsResources.py
+	
 	#!/usr/bin/env python2
 
 	import subprocess
@@ -123,7 +123,7 @@ Ensure that they are extracted such that the path is ```/opt/hadoop/etc``` inste
 
   
 
-10\. Add ve-spark-shell.sh
+### 10. Add ve-spark-shell.sh
 
 	# vi /opt/spark/ve-spark-shell.sh
 
@@ -137,19 +137,20 @@ Ensure that they are extracted such that the path is ```/opt/hadoop/etc``` inste
 		--conf spark.executor.resource.ve.discoveryScript=$SPARK_HOME/getVEsResources.py \
 		--files $SPARK_HOME/getVEsResources.py
 
-11\. Change ownership of /opt/hadoop /opt/spark to hadoop user.
+### 11. Change ownership of /opt/hadoop /opt/spark to hadoop user.
 
 	# chown -R hadoop /opt/hadoop
 	# chown -R hadoop /opt/spark
 	# chgrp -R hadoop /opt/hadoop
 	# chgrp -R hadoop /opt/spark
 
-12\. Install pdsh
+### 12. Install pdsh
 
 	# yum install pdsh
 
 
-13\. Set hadoop configuration. Take note that if you have no GPUs installed in your system, exclude the GPU related configurations in yarn-site.xml, container-executor.cfg, and resource-types.xml.
+### 13. Set hadoop configuration
+Take note that if you have no GPUs installed in your system, exclude the GPU related configurations in yarn-site.xml, container-executor.cfg, and resource-types.xml.
 
 	# su hadoop
 	$ vi /opt/hadoop/etc/hadoop/core-site.xml
@@ -221,7 +222,8 @@ Ensure that they are extracted such that the path is ```/opt/hadoop/etc``` inste
 	</configuration>
 
 
-**14\. Edit the following section of capacity-scheduler.xml and change the DefaultResourceCalculator to the DominantResourceCalculator setting below:**
+### 14. Update capacity-scheduler.xml
+Edit the following section of capacity-scheduler.xml and change the DefaultResourceCalculator to the DominantResourceCalculator setting below:
 
 	$ vi /opt/hadoop/etc/hadoop/capacity-scheduler.xml
 	 
@@ -238,7 +240,7 @@ Ensure that they are extracted such that the path is ```/opt/hadoop/etc``` inste
 	  </property>
   
 
-15\. Set up HDFS and YARN
+### 15. Set up HDFS and YARN
 
 	$ cd /opt/hadoop
 	$ bin/hdfs namenode -format
@@ -250,7 +252,7 @@ Ensure that they are extracted such that the path is ```/opt/hadoop/etc``` inste
 
 **Repeat the mkdir and chown for &lt;otheruser&gt; for any other users on the system.**
 
-16\. Setup GPU and Vector engine settings and scripts
+### 16. Setup GPU and Vector engine settings and scripts
 
 	$ mkdir /opt/hadoop/sbin/DevicePluginScript
 	$ vi /opt/hadoop/sbin/DevicePluginScript/nec-ve-get.py
@@ -296,11 +298,11 @@ Ensure that they are extracted such that the path is ```/opt/hadoop/etc``` inste
 	for ve in ves:
 	    print("id={id}, dev={dev}, state={state}, busId={busId}, major={major}, minor={minor}".format(**ve))
 
-17\. Start YARN services
+### 17. Start YARN services
 
 	$ sbin/start-yarn.sh
 
-18\. Verify spark shell sees VE resources
+### 18. Verify spark shell sees VE resources
 
 	$ /opt/spark/ve-spark-shell.sh
 	2021-05-14 13:38:47,468 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
